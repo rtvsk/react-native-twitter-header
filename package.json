@@ -21,7 +21,7 @@
   "private": false,
   "name": "react-native-twitter-like-header",
   "description": "",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Reutovsky/react-native-twitter-header.git"
