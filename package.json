@@ -18,7 +18,7 @@
     "babel-preset-expo": "~8.0.0",
     "@babel/core": "^7.0.0"
   },
-  "private": true,
+  "private": false,
   "name": "react-native-twitter-like-header",
   "description": "",
   "version": "1.0.1",
