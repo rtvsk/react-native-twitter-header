@@ -1,9 +1,5 @@
 {
   "main": "index.js",
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
   "private": false,
   "name": "react-native-twitter-like-header",
   "description": "React native twitter-like animated header",
