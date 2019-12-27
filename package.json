@@ -3,7 +3,7 @@
   "private": false,
   "name": "react-native-twitter-like-header",
   "description": "React native twitter-like animated header",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Reutovsky/react-native-twitter-header.git"
