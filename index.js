@@ -21,9 +21,9 @@ const HEADER_MAX_HEIGHT = 120,
       AVATAR_FONT_COLOR = 'black',
       AVATAR_TEXT_PADDING_LEFT = 10;
 
-const getDefaultImage = () => {
-  return require(`./assets/avatar.png`);
-};
+// const getDefaultImage = () => {
+//   return require(`./assets/avatar.png`);
+// };
 
 const defaultChildren = () => {
   return (
@@ -63,7 +63,7 @@ const RNTwitterLikeHeader = props => {
     avatarFontWeight = AVATAR_FONT_WEIGHT,
     avatarFontColor = AVATAR_FONT_COLOR,
     avatarTextPaddingLeft = AVATAR_TEXT_PADDING_LEFT,
-    getAvatarImage = getDefaultImage() || null,
+    getAvatarImage = null,
     children = defaultChildren(),
   } = props;
 
@@ -197,7 +197,7 @@ RNTwitterLikeHeader.propTypes = {
   avatarFontWeight: PropTypes.string,
   avatarFontColor: PropTypes.string,
   avatarTextPaddingLeft: PropTypes.number,
-  getAvatarImage: PropTypes.func,
+  getAvatarImage: PropTypes.any,
   children: PropTypes.element,
 };
 
@@ -220,7 +220,7 @@ RNTwitterLikeHeader.defaultProps = {
   avatarFontWeight: AVATAR_FONT_WEIGHT,
   avatarFontColor: AVATAR_FONT_COLOR,
   avatarTextPaddingLeft: AVATAR_TEXT_PADDING_LEFT,
-  // getAvatarImage: getDefaultImage(),
+  getAvatarImage: null,
   children: defaultChildren(),
 };
 
