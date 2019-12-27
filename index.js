@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, Image, Animated } from 'react-native';
 
+const HEADER_MAX_HEIGHT = 120,
+      HEADER_MIN_HEIGHT = 70,
+      PROFILE_IMAGE_MAX_HEIGHT = 80,
+      PROFILE_IMAGE_MIN_HEIGHT = 40,
+      HEADER_BACKGROUND_COLOR = 'lightskyblue',
+      USERNAME_AVATAR = 'Username Avatar',
+      USERNAME_HEADER = 'Username Header',
+      USERNAME_FONT_SIZE = 14,
+      USERNAME_FONT_WEIGHT = 'bold',
+      USERNAME_FONT_COLOR = 'white',
+      AVATAR_BORDER_WIDTH = 3,
+      AVATAR_BORDER_COLOR = 'white',
+      AVATAR_MARGIN_LEFT = 10,
+      AVATAR_FONT_SIZE = 20,
+      AVATAR_FONT_WEIGHT = 'bold',
+      AVATAR_FONT_COLOR = 'black',
+      AVATAR_TEXT_PADDING_LEFT = 10,
+      GET_AVATAR_IMAGE = () => require(`./assets/avatar.png`);
 
-export default function App(props) {
-  const HEADER_MAX_HEIGHT = 120,
-        HEADER_MIN_HEIGHT = 70,
-        PROFILE_IMAGE_MAX_HEIGHT = 80,
-        PROFILE_IMAGE_MIN_HEIGHT = 40,
-        HEADER_BACKGROUND_COLOR = 'lightskyblue',
-        USERNAME_AVATAR = 'Username Avatar',
-        USERNAME_HEADER = 'Username Header',
-        USERNAME_FONT_SIZE = 14,
-        USERNAME_FONT_WEIGHT = 'bold',
-        USERNAME_FONT_COLOR = 'white',
-        AVATAR_BORDER_WIDTH = 3,
-        AVATAR_BORDER_COLOR = 'white',
-        AVATAR_MARGIN_LEFT = 10,
-        AVATAR_FONT_SIZE = 20,
-        AVATAR_FONT_WEIGHT = 'bold',
-        AVATAR_FONT_COLOR = 'black',
-        AVATAR_TEXT_PADDING_LEFT = 10,
-        GET_AVATAR_IMAGE = () => require(`./assets/avatar.png`);
-
-  const defaultChildren = () => (<View style={{ height: 1000 }}></View>);
+const RNTwitterLikeHeader = props => {
+  const defaultChildren = () => <View style={{ height: 1000 }}></View>;
 
   const {
     headerMaxHeight = HEADER_MAX_HEIGHT,
@@ -155,3 +154,5 @@ export default function App(props) {
     </View>
   );
 }
+
+export default RNTwitterLikeHeader;
