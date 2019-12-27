@@ -1,37 +1,76 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, Animated } from 'react-native';
+import { Text, View, ScrollView, Image, Animated } from 'react-native';
 
-const HEADER_MAX_HEIGHT = 120;
-const HEADER_MIN_HEIGHT = 70;
-const PROFILE_IMAGE_MAX_HEIGHT = 80;
-const PROFILE_IMAGE_MIN_HEIGHT = 40;
 
-export default function App() {
+export default function App(props) {
+  const HEADER_MAX_HEIGHT = 120,
+        HEADER_MIN_HEIGHT = 70,
+        PROFILE_IMAGE_MAX_HEIGHT = 80,
+        PROFILE_IMAGE_MIN_HEIGHT = 40,
+        HEADER_BACKGROUND_COLOR = 'lightskyblue',
+        USERNAME_AVATAR = 'Username Avatar',
+        USERNAME_HEADER = 'Username Header',
+        USERNAME_FONT_SIZE = 14,
+        USERNAME_FONT_WEIGHT = 'bold',
+        USERNAME_FONT_COLOR = 'white',
+        AVATAR_BORDER_WIDTH = 3,
+        AVATAR_BORDER_COLOR = 'white',
+        AVATAR_MARGIN_LEFT = 10,
+        AVATAR_FONT_SIZE = 20,
+        AVATAR_FONT_WEIGHT = 'bold',
+        AVATAR_FONT_COLOR = 'black',
+        AVATAR_TEXT_PADDING_LEFT = 10,
+        GET_AVATAR_IMAGE = () => require(`./assets/avatar.png`);
+
+  const defaultChildren = () => (<View style={{ height: 1000 }}></View>);
+
+  const {
+    headerMaxHeight = HEADER_MAX_HEIGHT,
+    headerMinHeight = HEADER_MIN_HEIGHT,
+    profileImageMaxHeight = PROFILE_IMAGE_MAX_HEIGHT,
+    profileImageMinHeight = PROFILE_IMAGE_MIN_HEIGHT,
+    headerBackgroundColor = HEADER_BACKGROUND_COLOR,
+    usernameAvatar = USERNAME_AVATAR,
+    usernameHeader = USERNAME_HEADER,
+    usernameFontSize = USERNAME_FONT_SIZE,
+    usernameFontWeight = USERNAME_FONT_WEIGHT,
+    usernameFontColor = USERNAME_FONT_COLOR,
+    avatarBorderWidth = AVATAR_BORDER_WIDTH,
+    avatarBorderColor = AVATAR_BORDER_COLOR,
+    avatarMarginLeft = AVATAR_MARGIN_LEFT,
+    avatarFontSize = AVATAR_FONT_SIZE,
+    avatarFontWeight = AVATAR_FONT_WEIGHT,
+    avatarFontColor = AVATAR_FONT_COLOR,
+    avatarTextPaddingLeft = AVATAR_TEXT_PADDING_LEFT,
+    getAvatarImage = GET_AVATAR_IMAGE(),
+    children = defaultChildren(),
+  } = props;
+
   const [scrollY] = useState(new Animated.Value(0));
 
   const headerHeight = scrollY.interpolate({
-    inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-    outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+    inputRange: [0, headerMaxHeight - headerMinHeight],
+    outputRange: [headerMaxHeight, headerMinHeight],
     extrapolate: 'clamp',
   });
 
   const profileImageHeight = scrollY.interpolate({
-    inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-    outputRange: [PROFILE_IMAGE_MAX_HEIGHT, PROFILE_IMAGE_MIN_HEIGHT],
+    inputRange: [0, headerMaxHeight - headerMinHeight],
+    outputRange: [profileImageMaxHeight, profileImageMinHeight],
     extrapolate: 'clamp',
   });
 
   const profileImageMarginTop =scrollY.interpolate({
-    inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
+    inputRange: [0, headerMaxHeight - headerMinHeight],
     outputRange: [
-      HEADER_MAX_HEIGHT - (PROFILE_IMAGE_MAX_HEIGHT / 2),
-      HEADER_MAX_HEIGHT + 5
+      headerMaxHeight - (profileImageMaxHeight / 2),
+      headerMaxHeight + 5
     ],
     extrapolate: 'clamp',
   });
 
   const headerZIndex = scrollY.interpolate({
-    inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
+    inputRange: [0, headerMaxHeight - headerMinHeight],
     outputRange: [0, 1],
     extrapolate: 'clamp',
   });
@@ -39,9 +78,9 @@ export default function App() {
   const headerTitleBottom = scrollY.interpolate({
     inputRange: [
       0,
-      HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT,
-      HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT + 5 + PROFILE_IMAGE_MIN_HEIGHT,
-      HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT + 5 + PROFILE_IMAGE_MIN_HEIGHT + 26,
+      headerMaxHeight - headerMinHeight,
+      headerMaxHeight - headerMinHeight + 5 + profileImageMinHeight,
+      headerMaxHeight - headerMinHeight + 5 + profileImageMinHeight + 26,
     ],
     outputRange: [-20, -20, -20, 0],
     extrapolate: 'clamp',
@@ -55,15 +94,21 @@ export default function App() {
           top: 0,
           left: 0,
           right: 0,
-          backgroundColor: 'lightskyblue',
+          backgroundColor: headerBackgroundColor,
           height: headerHeight,
           zIndex: headerZIndex,
           alignItems: 'center',
         }}
       >
         <Animated.View style={{ position: 'absolute', bottom: headerTitleBottom }}>
-          <Text style={{ fontSize: 14, fontWeight: 'bold', color: 'white'}}>
-            Dmitry Iv.
+          <Text
+            style={{
+              fontSize: usernameFontSize,
+              fontWeight: usernameFontWeight,
+              color: usernameFontColor,
+            }}
+          >
+            {usernameHeader}
           </Text>
         </Animated.View>
       </Animated.View>
@@ -80,44 +125,33 @@ export default function App() {
           style={{
             width: profileImageHeight,
             height: profileImageHeight,
-            borderRadius: PROFILE_IMAGE_MAX_HEIGHT / 2,
-            borderWidth: 3,
-            borderColor: 'white',
+            borderRadius: profileImageMaxHeight / 2,
+            borderWidth: avatarBorderWidth,
+            borderColor: avatarBorderColor,
             overflow: 'hidden',
             marginTop: profileImageMarginTop,
-            marginLeft: 10,
+            marginLeft: avatarMarginLeft,
           }}
         >
           <Image
-            source={require('./assets/avatar.png')}
-            style={{
-              flex: 1,
-              width: null,
-              height: null,
-            }}
+            source={getAvatarImage}
+            style={{ flex: 1, width: null, height: null}}
           />
         </Animated.View>
         <View>
           <Text
             style={{
-              fontWeight: 'bold',
-              fontSize: 20,
-              paddingLeft: 10,
+              fontWeight: avatarFontWeight,
+              fontSize: avatarFontSize,
+              color: avatarFontColor,
+              paddingLeft: avatarTextPaddingLeft,
             }}
           >
-            Dmitry Iv.
+            {usernameAvatar}
           </Text>
         </View>
-        <View style={{ height: 1000 }}></View>
+        {children}
       </ScrollView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
