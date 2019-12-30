@@ -54,3 +54,38 @@ const styles = StyleSheet.create({
 | avatarTextPaddingLeft | 10                                 | number                   |
 | getAvatarImage        | null                               | `require('./image.jpg')` |
 | children              | `<View><Text>MyText</Text></View>` | JSX.Element / React.Node |
+
+## Example
+
+```javascript
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import RNTwitterLikeHeader from 'react-native-twitter-like-header';
+
+export default function App() {
+  return (
+    <RNTwitterLikeHeader
+      headerMaxHeight={130}
+      headerMinHeight={80}
+      profileImageMaxHeight={90}
+      profileImageMinHeight={50}
+      headerBackgroundColor={'green'}
+      usernameAvatar={'John Doe'}
+      usernameHeader={'John Doe'}
+      usernameFontSize={18}
+      getAvatarImage={require('./path/to/my/avatar.jpg')}
+    >
+      // Thats my custom children
+      <View style={styles.container}>
+        <Text>My text is here!</Text>
+      </View>
+    </RNTwitterLikeHeader>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
+```
