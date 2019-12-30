@@ -4,9 +4,7 @@
 
 ## Installation
 
-`npm install react-native-twitter-like-header
-
-yarn add react-native-twitter-like-header`
+`npm i react-native-twitter-like-header`
 
 ## Usage
 
